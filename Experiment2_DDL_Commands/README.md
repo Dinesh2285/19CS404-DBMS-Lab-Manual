@@ -105,123 +105,198 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+-- Write an SQL command can to add a column named email of type TEXT to the customers table
 
 ```sql
--- Paste your SQL code below for Question 1
+ALTER TABLE customers 
+ADD COLUMN email TEXT;
 ```
 
 **Output:**
+<img width="692" height="185" alt="1op" src="https://github.com/user-attachments/assets/33b76cd2-3e3e-4880-9a6c-8e65fd2e8b5c" />
 
-![Output1](output.png)
 
 **Question 2**
 ---
--- Paste Question 2 here
+Insert all students from Archived_students table into the Student_details table.
 
+cid         name        type        notnull     dflt_value  pk
+----------  ----------  ----------  ----------  ----------  ----------
+0           RollNo      INT           0                       1
+1           Name        VARCHAR(100)  0                       0
+2           Gender      VARCHAR(10)   0                       0
+3           Subject     VARCHAR(50)   0                       0
+4           MARKS       INT           0                       0
 ```sql
--- Paste your SQL code below for Question 2
+INSERT INTO Student_details(RollNo,Name,Gender,Subject,MARKS)
+SELECT RollNo,Name,Gender,Subject,MARKS
+FROM Archived_students;
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="613" height="186" alt="2op" src="https://github.com/user-attachments/assets/ce5b2a9f-42d6-4d32-9127-5923e32df8f9" />
 
 **Question 3**
 ---
--- Paste Question 3 here
+Create a table named Employees with the following constraints:
+
+EmployeeID should be the primary key.
+FirstName and LastName should be NOT NULL.
+Email should be unique.
+Salary should be greater than 0.
+DepartmentID should be a foreign key referencing the Departments table.
 
 ```sql
--- Paste your SQL code below for Question 3
+CREATE TABLE Employees(
+    EmployeeID INTEGER PRIMARY KEY,
+    FirstName TEXT NOT NULL,
+    LastName TEXT NOT NULL,
+    Email TEXT UNIQUE,
+    Salary INTEGER CHECK(Salary >0),
+    DepartmentID INTEGER,
+    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="548" height="317" alt="3op" src="https://github.com/user-attachments/assets/cdb2f601-7fa7-461a-9f8d-0c529e774a6a" />
 
 **Question 4**
 ---
--- Paste Question 4 here
+Create a table named Products with the following constraints:
+ProductID as INTEGER should be the primary key.
+ProductName as TEXT should be unique and not NULL.
+Price as REAL should be greater than 0.
+StockQuantity as INTEGER should be non-negative.
 
 ```sql
--- Paste your SQL code below for Question 4
+CREATE TABLE Products(
+    ProductID INT PRIMARY KEY,
+    ProductName TEXT UNIQUE NOT NULL,
+    Price REAL CHECK(Price>0),
+    StockQuantity INT CHECK(StockQuantity >=0)
+);
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1034" height="184" alt="4op" src="https://github.com/user-attachments/assets/867a45d5-f33c-4409-9403-f54a15ebd372" />
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write an SQL query to add two new columns, designation and net_salary, to the table Companies. The designation column should have a data type of varchar(50), and the net_salary column should have a data type of number.
 
 ```sql
--- Paste your SQL code below for Question 5
+ALTER TABLE Companies ADD COLUMN designation varchar(50);
+
+ALTER TABLE Companies ADD COLUMN net_salary number;
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="697" height="279" alt="5op" src="https://github.com/user-attachments/assets/2e6d7af8-f556-4e33-bca5-810dcd0a14b6" />
 
 **Question 6**
 ---
--- Paste Question 6 here
+In the Books table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+
+ISBN             Title                      Author           Publisher   Year
+---------------  -------------------------  ---------------  ----------  ----------
+978-1234567890   Introduction to AI         John Doe
+978-9876543210   Deep Learning              Jane Doe         TechPress   2022
+978-1122334455   Cybersecurity Essentials   Alice Smith                  2021
 
 ```sql
--- Paste your SQL code below for Question 6
+INSERT INTO Books(ISBN,Title,Author)
+VALUES ('978-1234567890','Introduction to AI','John Doe');
+
+INSERT INTO Books(ISBN,Title,Author,Publisher,Year)
+VALUES('978-9876543210','Deep Learning','Jane Doe','TechPress',2022);
+
+INSERT INTO Books(ISBN,Title,Author,Year)
+VALUES('978-1122334455','Cybersecurity Essentials','Alice Smith',2021);
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="810" height="190" alt="6op" src="https://github.com/user-attachments/assets/cdbe4c3a-8419-4bc2-9952-a4292a610609" />
 
 **Question 7**
 ---
--- Paste Question 7 here
+Create a table named Locations with the following columns:
 
+LocationID as INTEGER
+LocationName as TEXT
+Address as TEXT
 ```sql
--- Paste your SQL code below for Question 7
+CREATE TABLE Locations(
+    LocationID INTEGER,LocationName TEXT,Address TEXT
+);
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="723" height="281" alt="7" src="https://github.com/user-attachments/assets/0fb164a3-cca8-49e7-8fde-007bdc25481e" />
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write a SQL query to Delete customers from 'customer' table where 'CUST_CITY' is not 'New York' and 'OUTSTANDING_AMT' is greater than 5000.
 
 ```sql
--- Paste your SQL code below for Question 8
+DELETE FROM Customer
+WHERE CUST_CITY != 'New York'
+  AND OUTSTANDING_AMT > 5000;
+
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1088" height="370" alt="8" src="https://github.com/user-attachments/assets/600585c7-aa60-4849-bc18-b72dfef02c12" />
 
 **Question 9**
 ---
--- Paste Question 9 here
+Insert the below data into the Customers table, allowing the City and ZipCode columns to take their default values.
+
+CustomerID  Name          Address
+----------  ------------  ----------
+304         Peter Parker  Spider St      
+
+Note: The City and ZipCode columns will use their default values.
 
 ```sql
--- Paste your SQL code below for Question 9
+
+INSERT INTO Customers(CustomerID,Name,Address)
+VALUES(304,'Peter Parker','Spider St');
+
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1079" height="225" alt="9" src="https://github.com/user-attachments/assets/cdce70d6-7dee-49b3-b02f-cfc17729ad70" />
 
 **Question 10**
 ---
--- Paste Question 10 here
+Create a table named Products with the following constraints:
+ProductID as INTEGER should be the primary key.
+ProductName as TEXT should be unique and not NULL.
+Price as REAL should be greater than 0.
+StockQuantity as INTEGER should be non-negative.
 
 ```sql
--- Paste your SQL code below for Question 10
+CREATE TABLE Products (
+    ProductID INTEGER PRIMARY KEY,
+    ProductName TEXT UNIQUE NOT NULL,
+    Price REAL CHECK (Price > 0),
+    StockQuantity INTEGER CHECK (StockQuantity >= 0)
+);
+
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="778" height="128" alt="10" src="https://github.com/user-attachments/assets/6e0b7fd9-b838-4706-bc0b-04e6e0541330" />
 
 
 ## RESULT
